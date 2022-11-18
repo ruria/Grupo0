@@ -46,6 +46,27 @@ Apellidos char (30),
 Telefono char (20)
 )
 
+CREATE TABLE Facturas 
+(
+ID_Factura INT IDENTITY (1,1) PRIMARY KEY, 
+ID_Cliente int not null, 
+Facturado date,
+Detalle char (40), 
+ID_Siniestro int not null
+)
+
+CREATE TABLE Detalles
+(
+ID_Factura int,  
+Concepto varchar,
+Total int
+)
+GO
+
+
+
+
+
 --------------------------------TABLA RAMO--------------------------------------------------------
 create table[Ramo]
 (
@@ -58,4 +79,5 @@ create table[Ramo]
 )
 
 -------------------------------------------------------------------------------------------------------
+
 
