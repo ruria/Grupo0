@@ -115,6 +115,11 @@ CREATE TABLE Facturas
 ID_Factura INT IDENTITY (1,1) PRIMARY KEY, 
 ID_Cliente int not null,
 --foreign key ([ID_Cliente]) references Clientes(ID_Cliente), 
+--Hay que establecer los datos fiscales independientemente de las direcciones asociadas al cliente de la tabla de cliente. Por ello añadimos: 
+Nombre/Razón Social char (20), 
+Apellidos char (30), 
+Dirección de Facturación char (30), 
+DNI/NIF char (20), 
 Facturado date,
 Detalle char (40), 
 ID_Siniestro int not null,
