@@ -1,3 +1,5 @@
+drop DATABASE DB_GRUPO_0; 
+GO
 ---------------------------------------------------------------------
 -- Script that creates the sample database DB_GRUPO_0
 --
@@ -47,16 +49,63 @@ Direccion varchar (max),
 Telefono char (20),
 [E-mail] varchar
 )
+
+SELECT * FROM Clientes
 ----------------------------------------EMPLEADOS------------------------------------------------------
 drop table if exists Empleados
 
 Create table Empleados
 (
 ID_Empleado int Identity (1,1) primary key not null,
-Nombre varchar,
+Nombre varchar (30),
 Apellidos char (30),
 Telefono char (20)
 )
+SELECT * from Empleados
+
+----------VALORES PARA EMPLEADOS--------
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Miguel', 'de Cervantes', '600000001');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Federico', 'Garcia Lorca', '600000002');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Gustavo', 'Adolfo Bequer', '600000003');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Francisco', 'de Quevedo', '600000004');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Antonio', 'Machado Ruiz', '600000005');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Miguel', 'de Unamuno', '600000006');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Lope', 'de Vega', '600000007');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Benito', 'Perez Galdos', '600000008');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Juan Ramón', 'Jiménez Mantecón', '600000009');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Miguel', 'Delibes Setién', '600000010');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Arturo', 'Perez Reverte', '600000011');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Pedro', 'Calderon de la Barca', '600000012');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Carlos', 'Ruiz Zafón', '600000013');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Pio', 'Baroja y Nessi', '600000014');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Ramón María', 'del Valle-Inclán', '600000015');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Ildefonso María', 'Falcones de Sierra', '600000016');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Miguel', 'Hernández Gilabert', '600000017');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Luis', 'de Góngora y Argate', '600000018');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('María Rosalía', 'Rita de Castro', '600000019');
+INSERT INTO Empleados(Nombre, Apellidos, Telefono)
+  VALUES('Vicente', 'Aleixandre y Merlo', '600000020');
+
+
 -------------------------------------------FACTURAS---------------------------------------------------------------
 
 drop table if exists Facturas 
@@ -66,6 +115,11 @@ CREATE TABLE Facturas
 ID_Factura INT IDENTITY (1,1) PRIMARY KEY, 
 ID_Cliente int not null,
 --foreign key ([ID_Cliente]) references Clientes(ID_Cliente), 
+--Hay que establecer los datos fiscales independientemente de las direcciones asociadas al cliente de la tabla de cliente. Por ello añadimos: 
+Nombre/Razón Social char (20), 
+Apellidos char (30), 
+Dirección de Facturación char (30), 
+DNI/NIF char (20), 
 Facturado date,
 Detalle char (40), 
 ID_Siniestro int not null,
