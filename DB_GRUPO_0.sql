@@ -14,7 +14,7 @@ drop table ASEGURADORA
 
 CREATE TABLE ASEGURADORA
 (
-  ID_Aseguradora	INT    PRIMARY KEY NOT NULL,
+   
   ID_Cobertura		INT          NOT NULL ,
 -- FOREIGN KEY COBERTURAS(ID_Cobertura)
   ciaseguros		NVARCHAR(30) NOT NULL,
