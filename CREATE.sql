@@ -1,5 +1,7 @@
-USE [master]
-GO
+DROP DATABASE [DB_GRUPO_0]
+
+--USE [master]
+--GO
 /****** Object:  Database [DB_GRUPO_0]    Script Date: 21/11/2022 12:36:42 ******/
 CREATE DATABASE [DB_GRUPO_0]
  CONTAINMENT = NONE
@@ -177,7 +179,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Empleados](
-	[ID_Empleado] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	[ID_Empleado] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [varchar](64) NULL,
 	[Apellidos] [char](30) NULL,
 	[Telefono] [char](20) NULL,
@@ -200,9 +202,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Facturas](
-	[ID_Factura] [int] IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	[ID_Factura] [int] IDENTITY(1,1) NOT NULL,
+	[ID_Cliente] [int] not null,
 	[Facturado] [date] NULL,
-	[ID_Cliente] [int] NOT NULL FOREING KEY NOT NULL,
 	[Nombre/Razón Social] [char] (20) not null, 
 	[Apellidos] [char] (30) not null, 
 	[Dirección de Facturación] [char] (30)not null, 
@@ -212,7 +214,7 @@ PRIMARY KEY CLUSTERED
 (
 	[ID_Factura] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+) ON [PRIMARY];
 GO
 /****** Object:  Table [dbo].[Ramo]    Script Date: 21/11/2022 12:36:42 ******/
 SET ANSI_NULLS ON
@@ -303,15 +305,6 @@ INSERT [dbo].[Empleados] ([ID_Empleado], [Nombre], [Apellidos], [Telefono]) VALU
 INSERT [dbo].[Empleados] ([ID_Empleado], [Nombre], [Apellidos], [Telefono]) VALUES (4, N'Victor', N'Castilla                      ', N'942 36 36 38        ')
 INSERT [dbo].[Empleados] ([ID_Empleado], [Nombre], [Apellidos], [Telefono]) VALUES (5, N'Antonia', N'Castilla                      ', N'942 36 36 39        ')
 SET IDENTITY_INSERT [dbo].[Empleados] OFF
-GO
-SET IDENTITY_INSERT [dbo].[Facturas] ON 
-
-INSERT [dbo].[Facturas] ([ID_Factura], [ID_Cliente], [Facturado], [Detalle], [ID_Siniestro]) VALUES (1, 1, CAST(N'2022-11-21' AS Date), N'Primer Siniestro GRUPO0                 ', 1)
-INSERT [dbo].[Facturas] ([ID_Factura], [ID_Cliente], [Facturado], [Detalle], [ID_Siniestro]) VALUES (2, 2, CAST(N'2022-11-21' AS Date), N'Segundo Siniestro GRUPO0                ', 2)
-INSERT [dbo].[Facturas] ([ID_Factura], [ID_Cliente], [Facturado], [Detalle], [ID_Siniestro]) VALUES (3, 1, CAST(N'2022-11-21' AS Date), N'Primer Siniestro GRUPO0                 ', 1)
-INSERT [dbo].[Facturas] ([ID_Factura], [ID_Cliente], [Facturado], [Detalle], [ID_Siniestro]) VALUES (4, 2, CAST(N'2022-11-21' AS Date), N'Segundo Siniestro GRUPO0                ', 2)
-INSERT [dbo].[Facturas] ([ID_Factura], [ID_Cliente], [Facturado], [Detalle], [ID_Siniestro]) VALUES (5, 3, CAST(N'2022-11-21' AS Date), N'Tercer Siniestro GRUPO0                 ', 3)
-SET IDENTITY_INSERT [dbo].[Facturas] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Ramo] ON 
 
