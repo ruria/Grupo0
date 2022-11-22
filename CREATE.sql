@@ -86,9 +86,9 @@ GO
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
-GO
+GO  
 CREATE TABLE [dbo].[ASEGURADO](
-	[ID_Poliza] [int] IDENTITY(1,1) NOT NULL,
+	[ID_Siniestro] [int] IDENTITY(1,1) NOT NULL,
 	[ID_Aseguradora] [int] NOT NULL,
 --foreign key (ID_Aseguradora) references ASEGURADORA(ID_Aseguradora),
 	[apellidos] [nvarchar](30) NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE [dbo].[ASEGURADO](
 	[email] [nvarchar](24) NULL,
 PRIMARY KEY CLUSTERED 
 (
-	[ID_Poliza] ASC
+	[ID_Siniestro] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -243,7 +243,7 @@ CREATE TABLE [dbo].[SINIESTRO](
 	--foreign key ([ID_Cliente]) references Clientes(ID_Cliente),
 	[ID_Ramo] [int] NOT NULL,
 	--foreign key ([ID_Ramo])  references Ramo(ID_Ramo),
-	[fecha_sin] [date] NULL,
+	[fecha_sin] [date] NOT NULL,
 	[Recibido] [date] NULL,
 	[Revisado] [date] NULL,
 	[Asignado] [date] NULL,
@@ -261,10 +261,10 @@ PRIMARY KEY CLUSTERED
 GO
 SET IDENTITY_INSERT [dbo].[ASEGURADO] ON 
 
-INSERT [dbo].[ASEGURADO] ([ID_Poliza], [ID_Aseguradora], [apellidos], [nombre], [direccion], [ciudad], [codpostal], [pais], [telefono], [email]) VALUES (1008, 1, N'Gómez', N'Ana', N'Castilla, 10', N'Santander', N'39200', N'ESPAÑA', N'942 36 36 36', N'EMAIL@MAIL.COM')
-INSERT [dbo].[ASEGURADO] ([ID_Poliza], [ID_Aseguradora], [apellidos], [nombre], [direccion], [ciudad], [codpostal], [pais], [telefono], [email]) VALUES (2008, 2, N'Ruíz', N'Montse', N'Villa, 10', N'Marbella', N'29200', N'ESPAÑA', N'942 36 36 36', N'EMAIL@MAIL.COM')
-INSERT [dbo].[ASEGURADO] ([ID_Poliza], [ID_Aseguradora], [apellidos], [nombre], [direccion], [ciudad], [codpostal], [pais], [telefono], [email]) VALUES (3008, 3, N'Juan', N'Montserrat', N'Sevilla, 10', N'Sevilla', N'79200', N'ESPAÑA', N'942 36 36 36', N'EMAIL@MAIL.COM')
-INSERT [dbo].[ASEGURADO] ([ID_Poliza], [ID_Aseguradora], [apellidos], [nombre], [direccion], [ciudad], [codpostal], [pais], [telefono], [email]) VALUES (4008, 2, N'Rodríguez', N'Andrés', N'Maravilla, 10', N'Málaga', N'49200', N'ESPAÑA', N'942 36 36 36', N'EMAIL@MAIL.COM')
+INSERT [dbo].[ASEGURADO] ([ID_Siniestro], [ID_Aseguradora], [apellidos], [nombre], [direccion], [ciudad], [codpostal], [pais], [telefono], [email]) VALUES (1, 1, N'Gómez', N'Ana', N'Castilla, 10', N'Santander', N'39200', N'ESPAÑA', N'942 36 36 36', N'EMAIL@MAIL.COM')
+INSERT [dbo].[ASEGURADO] ([ID_Siniestro], [ID_Aseguradora], [apellidos], [nombre], [direccion], [ciudad], [codpostal], [pais], [telefono], [email]) VALUES (2, 2, N'Ruíz', N'Montse', N'Villa, 10', N'Marbella', N'29200', N'ESPAÑA', N'942 36 36 36', N'EMAIL@MAIL.COM')
+INSERT [dbo].[ASEGURADO] ([ID_Siniestro], [ID_Aseguradora], [apellidos], [nombre], [direccion], [ciudad], [codpostal], [pais], [telefono], [email]) VALUES (3, 3, N'Juan', N'Montserrat', N'Sevilla, 10', N'Sevilla', N'79200', N'ESPAÑA', N'942 36 36 36', N'EMAIL@MAIL.COM')
+INSERT [dbo].[ASEGURADO] ([ID_Siniestro], [ID_Aseguradora], [apellidos], [nombre], [direccion], [ciudad], [codpostal], [pais], [telefono], [email]) VALUES (4, 2, N'Rodríguez', N'Andrés', N'Maravilla, 10', N'Málaga', N'49200', N'ESPAÑA', N'942 36 36 36', N'EMAIL@MAIL.COM')
 SET IDENTITY_INSERT [dbo].[ASEGURADO] OFF
 GO
 INSERT [dbo].[ASEGURADORA] ([ID_Aseguradora], [ID_Cobertura], [ciaseguros], [nombrecontacto], [apellidocontacto], [telefono], [direccion], [ciudad], [codpostal], [pais]) VALUES (1, 1, N'ALLIANZ', N'Alberto', N'Gilbert', N'(171) 456-7890', N'Palacios 3', N'London', N'39100', N'UK')
@@ -323,7 +323,7 @@ SET IDENTITY_INSERT [dbo].[Ramo] OFF
 GO
 SET IDENTITY_INSERT [dbo].[SINIESTRO] ON 
 
-INSERT [dbo].[SINIESTRO] ([ID_Siniestro], [ID_Poliza], [ID_Empleado], [ID_Cliente], [ID_Ramo], [fecha_sin], [Recibido], [Revisado], [Asignado], [Visitado], [Cerrado], [Facturado], [Direccion], [Dictamen_final], [Desplazamiento_del_emp]) VALUES (5, 1008, 1, 2, 1, NULL, CAST(N'2022-11-01' AS Date), CAST(N'2022-11-02' AS Date), CAST(N'2022-11-09' AS Date), CAST(N'2022-11-10' AS Date), CAST(N'2022-11-20' AS Date), CAST(N'2022-11-21' AS Date), N'AYUNTAMIENTO SANTANDER', 2000, 200)
+INSERT [dbo].[SINIESTRO] ([ID_Siniestro], [ID_Poliza], [ID_Empleado], [ID_Cliente], [ID_Ramo], [fecha_sin], [Recibido], [Revisado], [Asignado], [Visitado], [Cerrado], [Facturado], [Direccion], [Dictamen_final], [Desplazamiento_del_emp]) VALUES (5, 1008, 1, 2, 1, '20220805', CAST(N'2022-11-01' AS Date), CAST(N'2022-11-02' AS Date), CAST(N'2022-11-09' AS Date), CAST(N'2022-11-10' AS Date), CAST(N'2022-11-20' AS Date), CAST(N'2022-11-21' AS Date), N'AYUNTAMIENTO SANTANDER', 2000, 200)
 SET IDENTITY_INSERT [dbo].[SINIESTRO] OFF
 GO
 ALTER TABLE [dbo].[ASEGURADO]  WITH CHECK ADD  CONSTRAINT [FK_ASEGURADO_ASEGURADORA] FOREIGN KEY([ID_Aseguradora])
